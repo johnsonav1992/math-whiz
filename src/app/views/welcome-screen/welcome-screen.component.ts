@@ -17,12 +17,4 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './welcome-screen.component.html',
   styleUrl: './welcome-screen.component.scss',
 })
-export class WelcomeScreenComponent {
-  text = '';
-
-  msg = '';
-
-  onClick() {
-    this.msg = 'Welcome ' + this.text;
-  }
-}
+export class WelcomeScreenComponent {}
