@@ -1,5 +1,9 @@
 <div class="main-container">
-  <blocks-group [operand]="operandOne()" />
-  <p style="font-size: 5rem">{{ operator() }}</p>
-  <blocks-group [operand]="operandTwo()" />
+  <div class="inner-wrapper">
+    <blocks-group [operand]="operandOne()" />
+    <p class="operator">
+      {{ operator() }}
+    </p>
+    <blocks-group [operand]="operandTwo()" />
+  </div>
 </div>

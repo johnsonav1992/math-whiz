@@ -3,5 +3,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+
+  .inner-wrapper {
+    gap: 8rem;
+    display: flex;
+    align-items: flex-end;
+
+    .operator {
+      font-size: 10rem;
+      align-self: center;
+    }
+  }
+}
+
+:host::ng-deep {
+  .zero {
+    font-size: 10rem;
+    align-self: center;
+  }
 }
