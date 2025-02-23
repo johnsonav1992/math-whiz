@@ -1,7 +1,7 @@
 @let number = operandBlocks().length;
 
 @if (!number) {
-  <p class="zero">0</p>
+  <img src="assets/0.png" />
 } @else {
   <div style="box-shadow: 3px 3px 5px gray; width: min-content">
     @for (block of operandBlocks(); track block) {
@@ -9,6 +9,7 @@
 
       <color-block
         [color]="colorBlocksMap[isSeven ? number - $index : number]"
+        [image]="$index === 0 ? 'assets/' + number + '.png' : ''"
       />
     }
   </div>

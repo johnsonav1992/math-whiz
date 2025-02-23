@@ -1,5 +1,8 @@
 .color-block {
   width: 75px;
   height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid rgb(58, 56, 56);
 }

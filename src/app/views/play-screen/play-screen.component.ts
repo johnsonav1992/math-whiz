@@ -1,4 +1,10 @@
-import { Component, inject, signal, viewChild } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  viewChild,
+  WritableSignal
+} from '@angular/core';
 import { colorBlocksMap } from '../../../styles/colorBlockDefs';
 import { BlocksGroupComponent } from '../../components/blocks-group/blocks-group.component';
 import { InputNumber, InputNumberModule } from 'primeng/inputnumber';
@@ -43,9 +49,7 @@ export class PlayScreenComponent {
   numberInput = viewChild<InputNumber>('numberInput');
 
   ngOnInit() {
-    if (this.operator() === '-' && this.operandOne() < this.operandTwo()) {
-      [this.operandOne, this.operandTwo] = [this.operandTwo, this.operandOne];
-    }
+    this.checkAndPreventNegativeAnswer();
   }
 
   submit() {
@@ -79,8 +83,22 @@ export class PlayScreenComponent {
   }
 
   resetNextQuestion() {
-    this.operandOne.set(Math.floor(Math.random() * 10));
-    this.operandTwo.set(Math.floor(Math.random() * 10));
+    this.setRandomOperand(this.operandOne);
+    this.setRandomOperand(this.operandTwo);
+    this.setRandomOperator();
+
+    this.checkAndPreventNegativeAnswer();
+  }
+
+  private setRandomOperator() {
+    this.operator.set(Math.random() > 0.5 ? '+' : '-');
+  }
+
+  private setRandomOperand(operand: WritableSignal<number>) {
+    operand.set(Math.floor(Math.random() * 10));
+  }
+
+  private checkAndPreventNegativeAnswer() {
     if (this.operator() === '-' && this.operandOne() < this.operandTwo()) {
       [this.operandOne, this.operandTwo] = [this.operandTwo, this.operandOne];
     }

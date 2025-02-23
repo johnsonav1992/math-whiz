@@ -17,6 +17,7 @@
   <div class="input-container">
     <p-inputNumber
       [(ngModel)]="userAnswer"
+      (keydown.enter)="submit()"
       #numberInput
     />
     <p-button
