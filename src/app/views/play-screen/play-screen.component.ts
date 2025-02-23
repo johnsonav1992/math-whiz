@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmationService } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
 import { AnswerPopupComponent } from '../../components/answer-popup/answer-popup.component';
+import { ScoreBoardComponent } from '../../components/score-board/score-board.component';
 
 @Component({
   selector: 'play-screen',
@@ -14,7 +15,8 @@ import { AnswerPopupComponent } from '../../components/answer-popup/answer-popup
     InputNumberModule,
     ButtonModule,
     FormsModule,
-    AnswerPopupComponent
+    AnswerPopupComponent,
+    ScoreBoardComponent
   ],
   templateUrl: './play-screen.component.html',
   styleUrl: './play-screen.component.scss',
@@ -36,6 +38,7 @@ export class PlayScreenComponent {
   operandTwo = signal(Math.floor(Math.random() * 10));
   operator = signal<'+' | '-'>(Math.random() > 0.5 ? '+' : '-');
   userAnswer = signal<number | null>(null);
+  score = signal(0);
 
   numberInput = viewChild<InputNumber>('numberInput');
 
@@ -52,6 +55,7 @@ export class PlayScreenComponent {
         target: input,
         message: this.correctAnswerMessages[Math.floor(Math.random() * 5)],
         accept: () => {
+          this.score.update((score) => score + 1);
           this.resetNextQuestion();
           this.userAnswer.set(null);
         }
