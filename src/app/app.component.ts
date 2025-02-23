@@ -1,10 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { ColorBlockComponent } from './components/color-block/color-block.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ColorBlockComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
