@@ -14,4 +14,18 @@
       [isOneOfTheOperandsZero]="doesZeroExist"
     />
   </div>
+  <div class="input-container">
+    <p-inputNumber
+      [(ngModel)]="userAnswer"
+      [style]="{ fontWeight: 'bold !important' }"
+      #numberInput
+    />
+    <p-button
+      label="Submit"
+      size="large"
+      (onClick)="submit()"
+    />
+  </div>
 </div>
+
+<answer-popup />

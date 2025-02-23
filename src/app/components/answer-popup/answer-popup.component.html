@@ -1,0 +1,16 @@
+<p-confirm-popup #cp>
+  <ng-template
+    #headless
+    let-data
+  >
+    <div class="inner-container">
+      <p class="text">{{ data.message }}</p>
+      <p-button
+        (onClick)="cp.onAccept()"
+        [severity]="data.message.includes('Oops') ? 'danger' : 'success'"
+        [label]="data.message.includes('Oops') ? 'Try again' : 'Next'"
+        size="large"
+      />
+    </div>
+  </ng-template>
+</p-confirm-popup>
