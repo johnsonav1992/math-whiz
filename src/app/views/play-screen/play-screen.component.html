@@ -1,9 +1,17 @@
+@let doesZeroExist = operandOne() === 0 || operandTwo() === 0;
+
 <div class="main-container">
   <div class="inner-wrapper">
-    <blocks-group [operand]="operandOne()" />
+    <blocks-group
+      [operand]="operandOne()"
+      [isOneOfTheOperandsZero]="doesZeroExist"
+    />
     <p class="operator">
       {{ operator() }}
     </p>
-    <blocks-group [operand]="operandTwo()" />
+    <blocks-group
+      [operand]="operandTwo()"
+      [isOneOfTheOperandsZero]="doesZeroExist"
+    />
   </div>
 </div>

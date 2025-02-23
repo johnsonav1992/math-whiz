@@ -1,9 +1,10 @@
-@if (!operandBlocks().length) {
+@let number = operandBlocks().length;
+
+@if (!number) {
   <p class="zero">0</p>
 } @else {
   <div style="box-shadow: 3px 3px 5px gray; width: min-content">
     @for (block of operandBlocks(); track block) {
-      @let number = operandBlocks().length;
       @let isSeven = number === 7;
 
       <color-block
