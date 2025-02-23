@@ -16,10 +16,10 @@ import { ColorBlockComponent } from '../color-block/color-block.component';
   styleUrl: './blocks-group.component.scss'
 })
 export class BlocksGroupComponent {
-  private _el = inject(ElementRef);
+  private _el = inject<ElementRef<HTMLDivElement>>(ElementRef);
 
   colorBlocksMap = colorBlocksMap;
-  public hostEl = this._el.nativeElement as HTMLDivElement;
+  public hostEl = this._el.nativeElement;
 
   operand = input.required<number>();
   isOneOfTheOperandsZero = input.required<boolean>();
