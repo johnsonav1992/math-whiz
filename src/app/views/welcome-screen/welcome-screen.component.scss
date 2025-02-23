@@ -7,6 +7,19 @@
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 8rem;
+  background: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  -webkit-background-clip: text;
+  color: transparent;
   margin-bottom: 1rem;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }

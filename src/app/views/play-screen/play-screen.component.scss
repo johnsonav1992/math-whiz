@@ -20,12 +20,12 @@
   .input-container {
     display: flex;
     gap: 1rem;
-
-    .p-inputnumber {
-      width: 300px;
-      height: 44px;
-      font-weight: bold !important;
-      font-size: 1.5rem;
-    }
   }
+}
+
+:host::ng-deep .p-inputnumber input {
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: 300px;
+  height: 44px;
 }
