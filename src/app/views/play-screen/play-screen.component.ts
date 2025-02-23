@@ -100,7 +100,8 @@ export class PlayScreenComponent {
 
   private checkAndPreventNegativeAnswer() {
     if (this.operator() === '-' && this.operandOne() < this.operandTwo()) {
-      [this.operandOne, this.operandTwo] = [this.operandTwo, this.operandOne];
+      this.operandOne.set(this.operandTwo());
+      this.operandTwo.set(this.operandOne());
     }
   }
 }
