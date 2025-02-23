@@ -42,6 +42,12 @@ export class PlayScreenComponent {
 
   numberInput = viewChild<InputNumber>('numberInput');
 
+  ngOnInit() {
+    if (this.operator() === '-' && this.operandOne() < this.operandTwo()) {
+      [this.operandOne, this.operandTwo] = [this.operandTwo, this.operandOne];
+    }
+  }
+
   submit() {
     const input = this.numberInput()?.el.nativeElement;
 
@@ -75,6 +81,8 @@ export class PlayScreenComponent {
   resetNextQuestion() {
     this.operandOne.set(Math.floor(Math.random() * 10));
     this.operandTwo.set(Math.floor(Math.random() * 10));
-    this.operator.set(Math.random() > 0.5 ? '+' : '-');
+    if (this.operator() === '-' && this.operandOne() < this.operandTwo()) {
+      [this.operandOne, this.operandTwo] = [this.operandTwo, this.operandOne];
+    }
   }
 }
