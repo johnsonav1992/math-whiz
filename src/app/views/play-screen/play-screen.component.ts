@@ -40,8 +40,8 @@ export class PlayScreenComponent {
     'Correct!'
   ];
 
-  operandOne = signal(Math.floor(Math.random() * 10));
-  operandTwo = signal(Math.floor(Math.random() * 10));
+  operandOne = signal(Math.floor(Math.random() * 11));
+  operandTwo = signal(Math.floor(Math.random() * 11));
   operator = signal<'+' | '-'>(Math.random() > 0.5 ? '+' : '-');
   userAnswer = signal<number | null>(null);
   score = signal(0);
@@ -49,7 +49,7 @@ export class PlayScreenComponent {
   numberInput = viewChild<InputNumber>('numberInput');
 
   ngOnInit() {
-    this.checkAndPreventNegativeAnswer();
+    this.checkAndPreventNegativeAnswerOrDoubleZero();
   }
 
   submit() {
@@ -73,11 +73,8 @@ export class PlayScreenComponent {
     } else {
       this._confirmService.confirm({
         target: input,
-        icon: 'pi pi-times',
         message: 'Oops, wrong answer!',
-        accept: () => {
-          this.userAnswer.set(null);
-        }
+        accept: () => this.userAnswer.set(null)
       });
     }
   }
@@ -87,7 +84,7 @@ export class PlayScreenComponent {
     this.setRandomOperand(this.operandTwo);
     this.setRandomOperator();
 
-    this.checkAndPreventNegativeAnswer();
+    this.checkAndPreventNegativeAnswerOrDoubleZero();
   }
 
   private setRandomOperator() {
@@ -95,13 +92,18 @@ export class PlayScreenComponent {
   }
 
   private setRandomOperand(operand: WritableSignal<number>) {
-    operand.set(Math.floor(Math.random() * 10));
+    operand.set(Math.floor(Math.random() * 11));
   }
 
-  private checkAndPreventNegativeAnswer() {
+  private checkAndPreventNegativeAnswerOrDoubleZero() {
     if (this.operator() === '-' && this.operandOne() < this.operandTwo()) {
+      const temp = this.operandOne();
       this.operandOne.set(this.operandTwo());
-      this.operandTwo.set(this.operandOne());
+      this.operandTwo.set(temp);
+    }
+    if (this.operandOne() === 0 && this.operandTwo() === 0) {
+      this.setRandomOperand(this.operandOne);
+      this.setRandomOperand(this.operandTwo);
     }
   }
 }
