@@ -4,22 +4,27 @@ import { computed, Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class SettingsService {
-  private _settings = signal<GameSettings>({
+  private _gameSettings = signal<GameSettings>({
     difficulty: 'easy',
-    preventZeroSum: true
+    preventZeroSum: true,
+    preventNegativeSum: true
   });
 
-  public gameSettings = computed(() => this._settings());
+  public gameSettings = computed(() => this._gameSettings());
 
   public updateGameSetting<
     TSetting extends keyof GameSettings,
     TValue extends GameSettings[TSetting]
   >(setting: TSetting, newValue: TValue): void {
-    this._settings.update((settings) => ({ ...settings, [setting]: newValue }));
+    this._gameSettings.update((settings) => ({
+      ...settings,
+      [setting]: newValue
+    }));
   }
 }
 
 type GameSettings = {
   difficulty: 'easy' | 'medium' | 'hard';
   preventZeroSum: boolean;
+  preventNegativeSum: boolean;
 };

@@ -13,6 +13,7 @@ import { ConfirmationService } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
 import { AnswerPopupComponent } from '../../components/answer-popup/answer-popup.component';
 import { ScoreBoardComponent } from '../../components/score-board/score-board.component';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'play-screen',
@@ -30,6 +31,7 @@ import { ScoreBoardComponent } from '../../components/score-board/score-board.co
 })
 export class PlayScreenComponent {
   private _confirmService = inject(ConfirmationService);
+  private _settingsService = inject(SettingsService);
 
   colorBlocksMap = colorBlocksMap;
   correctAnswerMessages = [
@@ -49,7 +51,7 @@ export class PlayScreenComponent {
   numberInput = viewChild<InputNumber>('numberInput');
 
   ngOnInit() {
-    this.checkAndPreventNegativeAnswerOrDoubleZero();
+    this.checkAndExecuteSettingsBasedUpdates();
   }
 
   submit() {
@@ -84,7 +86,7 @@ export class PlayScreenComponent {
     this.setRandomOperand(this.operandTwo);
     this.setRandomOperator();
 
-    this.checkAndPreventNegativeAnswerOrDoubleZero();
+    this.checkAndExecuteSettingsBasedUpdates();
   }
 
   private setRandomOperator() {
@@ -95,15 +97,32 @@ export class PlayScreenComponent {
     operand.set(Math.floor(Math.random() * 11));
   }
 
-  private checkAndPreventNegativeAnswerOrDoubleZero() {
+  private checkAndExecuteSettingsBasedUpdates() {
+    if (this._settingsService.gameSettings().preventZeroSum) {
+      this.checkAndPreventZeroSum();
+    }
+
+    if (this._settingsService.gameSettings().preventNegativeSum) {
+      this.checkAndPreventNegativeSum();
+    }
+  }
+
+  private checkAndPreventZeroSum() {
+    if (
+      (this.operator() === '+' &&
+        this.operandOne() + this.operandTwo() === 0) ||
+      (this.operator() === '-' && this.operandOne() - this.operandTwo() === 0)
+    ) {
+      this.setRandomOperand(this.operandOne);
+      this.setRandomOperand(this.operandTwo);
+    }
+  }
+
+  private checkAndPreventNegativeSum() {
     if (this.operator() === '-' && this.operandOne() < this.operandTwo()) {
       const temp = this.operandOne();
       this.operandOne.set(this.operandTwo());
       this.operandTwo.set(temp);
-    }
-    if (this.operandOne() === 0 && this.operandTwo() === 0) {
-      this.setRandomOperand(this.operandOne);
-      this.setRandomOperand(this.operandTwo);
     }
   }
 }
