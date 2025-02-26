@@ -4,7 +4,10 @@ import { computed, Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class SettingsService {
-  private _settings = signal({} as GameSettings);
+  private _settings = signal<GameSettings>({
+    difficulty: 'easy',
+    preventZeroSum: true
+  });
 
   public gameSettings = computed(() => this._settings());
 
