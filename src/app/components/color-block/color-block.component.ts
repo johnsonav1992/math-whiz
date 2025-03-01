@@ -7,6 +7,10 @@ import { Component, input } from '@angular/core';
     <div
       class="color-block"
       [style.background-color]="color()"
+      [class.special-border]="blockGroupSize() === 10"
+      [class.ten-bottom-border]="
+        blockGroupSize() === 10 && indexInGroup() === 9
+      "
     >
       @if (image()) {
         <img
@@ -21,5 +25,8 @@ import { Component, input } from '@angular/core';
 })
 export class ColorBlockComponent {
   color = input.required<string>();
+
+  blockGroupSize = input<number>();
+  indexInGroup = input<number>();
   image = input<string>();
 }

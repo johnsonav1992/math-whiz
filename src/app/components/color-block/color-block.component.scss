@@ -5,4 +5,13 @@
   justify-content: center;
   align-items: center;
   border: 1px solid rgb(58, 56, 56);
+
+  &.special-border {
+    border-left: 3px solid #e7161e;
+    border-right: 3px solid #e7161e;
+  }
+
+  &.ten-bottom-border {
+    border-bottom: 3px solid #e7161e;
+  }
 }
