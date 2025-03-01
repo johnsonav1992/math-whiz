@@ -16,7 +16,7 @@ export class AppComponent {
     ) as PerformanceNavigationTiming[];
 
     if (navigation && navigation.type === 'reload') {
-      this._router.navigate(['/']);
+      this._router.navigate(['welcome']);
     }
   }
 }
