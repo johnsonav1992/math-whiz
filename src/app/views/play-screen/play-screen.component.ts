@@ -115,6 +115,8 @@ export class PlayScreenComponent {
     ) {
       this.setRandomOperand(this.operandOne);
       this.setRandomOperand(this.operandTwo);
+
+      this.checkAndPreventZeroSum(); // recursive in case of another zero sum
     }
   }
 

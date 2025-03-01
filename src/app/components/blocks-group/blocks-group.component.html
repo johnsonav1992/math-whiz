@@ -3,14 +3,43 @@
 @if (!number) {
   <img src="assets/0.png" />
 } @else {
-  <div style="box-shadow: 3px 3px 5px gray; width: min-content">
+  <div class="wrapper">
     @for (block of operandBlocks(); track block) {
       @let isSeven = number === 7;
+      @let color = colorBlocksMap[isSeven ? number - $index : number];
+      @let isBlockRightUnderHead = $index === 1;
 
-      <color-block
-        [color]="colorBlocksMap[isSeven ? number - $index : number]"
-        [image]="$index === 0 ? 'assets/' + number + '.png' : ''"
-      />
+      <div
+        [style.position]="isBlockRightUnderHead ? 'relative' : undefined"
+        style="overflow: visible !important; clip-path: none"
+      >
+        <color-block
+          [color]="color"
+          [image]="$index === 0 ? 'assets/' + number + '.png' : ''"
+        />
+        @if (isBlockRightUnderHead) {
+          <div
+            class="left arm"
+            [style.background-color]="color"
+          ></div>
+          <div
+            class="right arm"
+            [style.background-color]="color"
+          ></div>
+        }
+      </div>
     }
+  </div>
+  <div class="feet">
+    @let footColor = colorBlocksMap[number];
+
+    <div
+      class="foot"
+      [style.background-color]="footColor"
+    ></div>
+    <div
+      class="foot"
+      [style.background-color]="footColor"
+    ></div>
   </div>
 }
