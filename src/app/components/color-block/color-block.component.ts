@@ -11,6 +11,8 @@ import { Component, input } from '@angular/core';
       [class.ten-bottom-border]="
         blockGroupSize() === 10 && indexInGroup() === 9
       "
+      [class.rounded-top]="indexInGroup() === 0"
+      [class.rounded-bottom]="lastIndexInGroup()"
     >
       @if (image()) {
         <img
@@ -28,5 +30,6 @@ export class ColorBlockComponent {
 
   blockGroupSize = input<number>();
   indexInGroup = input<number>();
+  lastIndexInGroup = input<boolean>();
   image = input<string>();
 }

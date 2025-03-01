@@ -16,6 +16,7 @@
         <color-block
           [color]="color"
           [indexInGroup]="$index"
+          [lastIndexInGroup]="number - $index === 1"
           [blockGroupSize]="number"
           [image]="$index === 0 ? 'assets/' + number + '.png' : ''"
         />
