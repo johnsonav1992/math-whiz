@@ -1,8 +1,9 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'color-block',
-  imports: [],
+  imports: [NgOptimizedImage],
   template: `
     <div
       class="color-block"
@@ -16,9 +17,10 @@ import { Component, input } from '@angular/core';
     >
       @if (image()) {
         <img
-          [src]="image()"
-          width="72px"
-          height="72px"
+          [ngSrc]="image() || ''"
+          width="72"
+          height="72"
+          [priority]="true"
         />
       }
     </div>
