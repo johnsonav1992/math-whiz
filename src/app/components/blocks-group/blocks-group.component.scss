@@ -29,6 +29,18 @@
     right: -20px;
     transform: rotate(-45deg);
   }
+
+  &.short {
+    height: 40px;
+  }
+
+  &.short-right {
+    right: -15px;
+  }
+
+  &.short-left {
+    left: -15px;
+  }
 }
 
 .feet {

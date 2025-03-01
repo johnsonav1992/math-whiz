@@ -23,10 +23,14 @@
         @if (isBlockRightUnderHead) {
           <div
             class="left arm"
+            [class.short]="number < 4"
+            [class.short-left]="number < 4"
             [style.background-color]="color"
           ></div>
           <div
             class="right arm"
+            [class.short]="number < 4"
+            [class.short-right]="number < 4"
             [style.background-color]="color"
           ></div>
         }
