@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -13,7 +13,8 @@ import { Router } from '@angular/router';
     InputTextModule,
     ButtonModule,
     MessageModule,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage
   ],
   templateUrl: './welcome-screen.component.html',
   styleUrl: './welcome-screen.component.scss'
