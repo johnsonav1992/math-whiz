@@ -18,6 +18,7 @@
   border: 1px solid rgb(58, 56, 56);
   z-index: -5;
   top: 24px;
+  box-shadow: 1px 1px 5px gray;
 
   &.left {
     left: -20px;
@@ -41,5 +42,6 @@
     border: 1px solid rgb(58, 56, 56);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    box-shadow: 3px 3px 5px gray;
   }
 }
