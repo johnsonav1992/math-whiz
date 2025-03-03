@@ -3,6 +3,9 @@
 @if (!number) {
   <img src="assets/0.png" />
 } @else {
+  <div class="top-number">
+    <p>{{ number }}</p>
+  </div>
   <div class="wrapper">
     @for (block of operandBlocks(); track block) {
       @let isSeven = number === 7;

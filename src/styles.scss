@@ -1,7 +1,15 @@
 @use "styles/vars" as *;
 
+@font-face {
+  font-family: "Kronika";
+  src: url("assets/KRONIKA_.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Kronika";
+  margin: 0;
 }
 
 html {
